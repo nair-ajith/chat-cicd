@@ -101,7 +101,7 @@ jobs:
           SLACK_CHANNEL: '#devops'
           SLACK_COLOR: 'warning'
           SLACK_TITLE: 'Approval Required'
-          SLACK_MESSAGE: 'A pull request was merged to the chat-cicd main brancg. Deployment to Development environment requires approval. Workflow Run ID: ${{ github.run_id }}'
+          SLACK_MESSAGE: 'A pull request was merged to the chat-cicd main branch. Deployment to Development environment requires approval. Workflow Run ID: ${{ github.run_id }}'
           SLACK_USERNAME: 'GitHub Actions'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Set up Docker Buildx
