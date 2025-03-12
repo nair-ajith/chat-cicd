@@ -1,0 +1,46 @@
+name: Pull Request Describe
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Pull Request Number'
+        required: true
+
+jobs:
+  describe_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate diff and Summarize with OpenAI
+        id: generate_diff
+        run: |
+          pr_number=${{ github.event.inputs.pr_number }}
+          diff=$(gh pr diff $pr_number)
+          response=$(curl -s https://api.openai.com/v1/chat/completions \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+          -d '{
+            "model": "gpt-4",
+            "messages": [{"role": "user", "content": "'"Summarize the changes in the given git diff output: ${diff//$'\n'/\\n}"'"}],
+            "max_tokens": 100
+          }')
+          echo $response
+          summary=$(echo "$response" | jq -r '.choices[0].message.content')
+          echo "$summary" > summary.txt
+          echo "::set-output name=summary::$summary"
+          echo "::set-output name=diff::$diff"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload OpenAI Response as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openai-response
+          path: summary.txt
+
+      - name: Output summary
+        run: |
+          echo "Summary: ${{ steps.generate_diff.outputs.summary }}"
