@@ -34,3 +34,4 @@ The CI/CD pipeline is defined in `.github/workflows/deploy-approval.yml` and con
 4.  **Style:** Checks code style.
 5.  **SAST:** Runs static analysis security testing.
 6.  **Docker:** Builds and pushes the Docker image to Docker Hub after approval.
+
