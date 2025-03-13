@@ -7,11 +7,19 @@ const thridFunc = () => {
 };
 
 const fourthFunc = () => {
-    console.log('Hello from the third function');
+    console.log('Hello from the fourth function');
 };
+
+const fifthFunc = () => {
+    console.log('Hello from the fifth function');
+};
+
 
 
 export const firstModule = () => {
     console.log('Hello from first module');
     secondFunc();
+    thridFunc();
+    fourthFunc();
+    fifthFunc();
 };
