@@ -14,6 +14,9 @@ const fifthFunc = () => {
     console.log('Hello from the fifth function');
 };
 
+const sixthFunc = () => {
+    console.log('Hello from the fifth function');
+};
 
 
 export const firstModule = () => {
@@ -22,4 +25,5 @@ export const firstModule = () => {
     thridFunc();
     fourthFunc();
     fifthFunc();
+    sixthFunc();
 };
