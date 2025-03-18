@@ -15,7 +15,7 @@ const fifthFunc = () => {
 };
 
 const sixthFunc = () => {
-    console.log('Hello from the fifth function');
+    console.log('Hello from the sixth function');
 };
 
 
