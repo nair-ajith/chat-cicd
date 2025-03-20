@@ -18,6 +18,9 @@ const sixthFunc = () => {
     console.log('Hello from the sixth function');
 };
 
+const eighthFunc = () => {
+    console.log('Hello from the eighth function');
+};
 
 export const firstModule = () => {
     console.log('Hello from first module');
